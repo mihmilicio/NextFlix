@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NextFlix</string>
+
+    <string name="btn_voltar_alt_text">Voltar</string>
+
+    <string name="watchlist_titulo">Watchlist</string>
+
+    <string name="catalogo_titulo">Catálogo</string>
 </resources>
