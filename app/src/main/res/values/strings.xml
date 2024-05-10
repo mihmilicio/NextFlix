@@ -4,6 +4,8 @@
     <string name="btn_voltar_alt_text">Voltar</string>
 
     <string name="watchlist_titulo">Watchlist</string>
+    <string name="watchlist_icon_content_description">Ícone de marca-páginas representando os itens salvos na watchlist</string>
 
     <string name="catalogo_titulo">Catálogo</string>
+    <string name="catalogo_icon_content_description">Ícone de livro aberto representando um catálogo</string>
 </resources>
