@@ -75,6 +75,9 @@ dependencies {
     implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.retrofit.logging.interceptor)
 
+    implementation(libs.android.paging)
+    implementation(libs.android.paging.compose)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
