@@ -26,7 +26,7 @@ class SeriePagingSource @Inject constructor(
             LoadResult.Page(
                 data = resposta.tv_shows.asDomainModel(),
                 prevKey = if (currentPage == 1) null else currentPage - 1,
-                nextKey = if (resposta.tv_shows.isEmpty()) null else resposta.page + 1
+                nextKey = if (resposta.page >= resposta.pages) null else resposta.page + 1
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
