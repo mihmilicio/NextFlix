@@ -3,11 +3,12 @@ package io.github.mihmilicio.nextflix.ui.features.catalogo
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import io.github.mihmilicio.nextflix.data.Serie
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 
 
@@ -16,13 +17,13 @@ fun CatalogoScreen(
     modifier: Modifier = Modifier,
     viewModel: CatalogoViewModel = hiltViewModel()
 ) {
-    val series by viewModel.series.collectAsState()
+    val seriePagingItems: LazyPagingItems<Serie> = viewModel.seriesPaging.collectAsLazyPagingItems()
 
     Column(
         modifier = modifier
     ) {
         // TODO search bar
-        SerieGrid(series = series)
+        SerieGrid(seriePagingItems = seriePagingItems)
     }
 }
 

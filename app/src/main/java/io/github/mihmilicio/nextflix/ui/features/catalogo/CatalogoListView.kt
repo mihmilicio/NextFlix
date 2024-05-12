@@ -4,24 +4,28 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.paging.PagingData
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import io.github.mihmilicio.nextflix.data.Serie
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
-fun SerieGrid(series: List<Serie>) {
+fun SerieGrid(seriePagingItems: LazyPagingItems<Serie>) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(100.dp),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        itemsIndexed(series) { _, serie ->
-            SerieCard(serie)
+        items(seriePagingItems.itemCount) { i ->
+            SerieCard(seriePagingItems[i]!!)
         }
+        // TODO loadStates
     }
 }
 
@@ -29,6 +33,6 @@ fun SerieGrid(series: List<Serie>) {
 @Composable
 fun SerieGridPreview() {
     NextFlixTheme {
-        SerieGrid(Serie.listaStub)
+        SerieGrid(flowOf(PagingData.from(Serie.listaStub)).collectAsLazyPagingItems())
     }
 }
