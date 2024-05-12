@@ -53,6 +53,6 @@ fun SerieCard(serie: Serie) {
 @Composable
 fun SerieCardPreview() {
     NextFlixTheme {
-        SerieCard(serie = items[0])
+        SerieCard(serie = Serie.stub)
     }
 }

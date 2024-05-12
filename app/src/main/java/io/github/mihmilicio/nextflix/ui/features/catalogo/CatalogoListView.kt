@@ -29,6 +29,6 @@ fun SerieGrid(series: List<Serie>) {
 @Composable
 fun SerieGridPreview() {
     NextFlixTheme {
-        SerieGrid(items)
+        SerieGrid(Serie.listaStub)
     }
 }
