@@ -15,6 +15,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.ui.components.ErroRow
 import io.github.mihmilicio.nextflix.ui.components.Loader
@@ -22,15 +23,18 @@ import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 import kotlinx.coroutines.flow.flowOf
 
 @Composable
-fun SerieGrid(seriePagingItems: LazyPagingItems<Serie>) {
+fun SerieGrid(seriePagingItems: LazyPagingItems<Serie>, onAdicionarSerie: (Serie) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(100.dp),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        items(seriePagingItems.itemCount) { i ->
-            SerieCard(seriePagingItems[i]!!)
+        items(
+            count = seriePagingItems.itemCount,
+            key = seriePagingItems.itemKey { it.id }
+        ) { i ->
+            SerieCard(seriePagingItems[i]!!, onAdicionarSerie)
         }
         renderizarEstados(seriePagingItems)
     }
@@ -100,7 +104,8 @@ fun SerieGridPreview() {
                 PagingData.from(
                     Serie.listaStub
                 )
-            ).collectAsLazyPagingItems()
+            ).collectAsLazyPagingItems(),
+            onAdicionarSerie = {}
         )
     }
 }

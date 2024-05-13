@@ -45,7 +45,9 @@ fun CatalogoScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            SerieGrid(seriePagingItems = seriePagingItems)
+            SerieGrid(
+                seriePagingItems = seriePagingItems,
+                onAdicionarSerie = { viewModel.adicionarSerie(it) })
         }
     }
 

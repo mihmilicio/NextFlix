@@ -10,6 +10,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.mihmilicio.nextflix.domain.model.Serie
+import io.github.mihmilicio.nextflix.domain.usecase.AdicionarSerieNaWatchlistUseCase
 import io.github.mihmilicio.nextflix.domain.usecase.DirecionarConsultaDoCatalogoUseCase
 import io.github.mihmilicio.nextflix.domain.usecase.paging.SeriePagingSource
 import kotlinx.coroutines.FlowPreview
@@ -18,12 +19,14 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @OptIn(FlowPreview::class)
 @HiltViewModel
 class CatalogoViewModel @Inject constructor(
-    private val direcionarConsultaDoCatalogoUseCase: DirecionarConsultaDoCatalogoUseCase
+    private val direcionarConsultaDoCatalogoUseCase: DirecionarConsultaDoCatalogoUseCase,
+    private val adicionarSerieNaWatchlistUseCase: AdicionarSerieNaWatchlistUseCase
 
 ) : ViewModel() {
 
@@ -74,6 +77,17 @@ class CatalogoViewModel @Inject constructor(
         if (queryParaBuscar.value.isBlank() && query.length < BUSCA_MINIMO_CARACTERES) return
 
         queryParaBuscar.tryEmit(query)
+    }
+
+    fun adicionarSerie(serie: Serie) {
+        viewModelScope.launch {
+            try {
+                adicionarSerieNaWatchlistUseCase(serie.id)
+                // TODO feedback de adicionado
+            } catch (e: Exception) {
+                // TODO
+            }
+        }
     }
 
     companion object {

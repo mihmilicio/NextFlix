@@ -1,14 +1,21 @@
 package io.github.mihmilicio.nextflix.ui.features.catalogo
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
+import androidx.compose.material3.FilledTonalIconButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
@@ -21,21 +28,34 @@ import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 
 
 @Composable
-fun SerieCard(serie: Serie) {
+fun SerieCard(
+    serie: Serie,
+    onAdicionarSerie: (Serie) -> Unit
+) {
     OutlinedCard(
         modifier = Modifier.sizeIn(maxWidth = 250.dp)
-
-
     ) {
-        AsyncImage(
-            model = serie.posterUrl,
-            contentDescription = serie.nome,
-            modifier = Modifier
-                .aspectRatio(0.75f)
-                .background(MaterialTheme.colorScheme.secondaryContainer)
-                .fillMaxWidth(),
-            contentScale = ContentScale.Crop
-        )
+        Box {
+            AsyncImage(
+                model = serie.posterUrl,
+                contentDescription = serie.nome,
+                modifier = Modifier
+                    .aspectRatio(0.75f)
+                    .background(MaterialTheme.colorScheme.secondaryContainer)
+                    .fillMaxWidth(),
+                contentScale = ContentScale.Crop
+            )
+            FilledTonalIconButton(
+                onClick = { onAdicionarSerie(serie) },
+                shape = MaterialTheme.shapes.extraSmall,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .size(36.dp)
+            ) {
+                Icon(Icons.Default.Bookmark, contentDescription = null)
+            }
+        }
+
         Text(
             text = serie.nome,
             textAlign = TextAlign.Center,
@@ -53,6 +73,6 @@ fun SerieCard(serie: Serie) {
 @Composable
 fun SerieCardPreview() {
     NextFlixTheme {
-        SerieCard(serie = Serie.stub)
+        SerieCard(serie = Serie.stub, onAdicionarSerie = {})
     }
 }
