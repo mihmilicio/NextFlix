@@ -4,7 +4,7 @@ data class DetalheDaSerie(
     val id: Long,
     val nome: String,
     val posterUrl: String,
-    val foto: String,
+    val foto: String?,
     val episodios: List<Episodio>
 ) {
     companion object {
