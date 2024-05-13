@@ -16,18 +16,21 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import io.github.mihmilicio.nextflix.domain.model.DetalheDaSerie
+import io.github.mihmilicio.nextflix.domain.model.EpisodioDaWatchlist
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 
 
 @Composable
-fun EpisodioCard(detalheSerie: DetalheDaSerie) {
+fun EpisodioCard(
+    episodio: EpisodioDaWatchlist,
+    marcarEpisodioComoAssistido: (EpisodioDaWatchlist) -> Unit
+) {
     OutlinedCard {
         ListItem(
             leadingContent = {
                 AsyncImage(
-                    model = detalheSerie.foto,
-                    contentDescription = detalheSerie.nome,
+                    model = episodio.foto,
+                    contentDescription = episodio.serie.nome,
                     modifier = Modifier
                         .height(64.dp)
                         .aspectRatio(4 / 3f)
@@ -37,7 +40,7 @@ fun EpisodioCard(detalheSerie: DetalheDaSerie) {
             },
             headlineContent = {
                 Text(
-                    text = detalheSerie.nome,
+                    text = episodio.serie.nome,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = MaterialTheme.typography.titleMedium,
@@ -47,7 +50,7 @@ fun EpisodioCard(detalheSerie: DetalheDaSerie) {
             },
             supportingContent = {
                 Text(
-                    text = "S${detalheSerie.episodios[0].temporada}E${detalheSerie.episodios[0].episodio}: ${detalheSerie.episodios[0].nome}",
+                    text = "S${episodio.temporada}E${episodio.episodio}: ${episodio.nome}",
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,
                     style = MaterialTheme.typography.titleMedium,
@@ -56,7 +59,9 @@ fun EpisodioCard(detalheSerie: DetalheDaSerie) {
                 )
             },
             trailingContent = {
-                Checkbox(checked = false, onCheckedChange = {})
+                Checkbox(
+                    checked = false,
+                    onCheckedChange = { marcarEpisodioComoAssistido(episodio) })
             }
         )
     }
@@ -66,6 +71,6 @@ fun EpisodioCard(detalheSerie: DetalheDaSerie) {
 @Composable
 fun SerieCardPreview() {
     NextFlixTheme {
-        EpisodioCard(detalheSerie = DetalheDaSerie.stub)
+        EpisodioCard(episodio = EpisodioDaWatchlist.stub, marcarEpisodioComoAssistido = {})
     }
 }

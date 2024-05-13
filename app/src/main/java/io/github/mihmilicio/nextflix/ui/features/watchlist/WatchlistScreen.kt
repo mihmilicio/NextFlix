@@ -19,7 +19,7 @@ fun WatchlistScreen(
     modifier: Modifier = Modifier,
     viewModel: WatchlistViewModel = hiltViewModel()
 ) {
-    val series by viewModel.series.collectAsState()
+    val episodios by viewModel.episodios.collectAsState()
 
     Scaffold(
         modifier = modifier,
@@ -30,7 +30,7 @@ fun WatchlistScreen(
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            WatchlistList(series = series)
+            WatchlistList(episodios = episodios)
         }
     }
 }

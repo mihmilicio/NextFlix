@@ -7,6 +7,12 @@ data class DetalheDaSerie(
     val foto: String?,
     val episodios: List<Episodio>
 ) {
+    fun asSerie() = Serie(
+        id = id,
+        nome = nome,
+        posterUrl = posterUrl
+    )
+
     companion object {
         val stub = DetalheDaSerie(
             id = 35624,
