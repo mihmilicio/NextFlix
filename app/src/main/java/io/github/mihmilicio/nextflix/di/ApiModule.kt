@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.mihmilicio.nextflix.data.datasource.SerieRemoteDataSource
+import io.github.mihmilicio.nextflix.data.datasource.WatchlistLocalDataSource
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -42,5 +43,9 @@ object ApiModule {
     fun provideSerieApi(retrofit: Retrofit): SerieRemoteDataSource = retrofit.create(
         SerieRemoteDataSource::class.java
     )
+
+    @Singleton
+    @Provides
+    fun provideWatchlistCache(): WatchlistLocalDataSource = WatchlistLocalDataSource()
 
 }
