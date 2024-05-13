@@ -1,38 +1,83 @@
 package io.github.mihmilicio.nextflix.ui.features.catalogo
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.mihmilicio.nextflix.data.Serie
-import io.github.mihmilicio.nextflix.domain.catalogo.ListarSeriesPopularesUseCase
+import io.github.mihmilicio.nextflix.data.repository.paging.SeriePagingSource
+import io.github.mihmilicio.nextflix.domain.catalogo.DirecionarConsultaDoCatalogoUseCase
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+@OptIn(FlowPreview::class)
 @HiltViewModel
 class CatalogoViewModel @Inject constructor(
-    private val listarSeriesPopularesUseCase: ListarSeriesPopularesUseCase
+    private val direcionarConsultaDoCatalogoUseCase: DirecionarConsultaDoCatalogoUseCase
+
 ) : ViewModel() {
 
-    private val _seriesPaging: MutableStateFlow<PagingData<Serie>> =
-        MutableStateFlow(value = PagingData.empty())
-    val seriesPaging: StateFlow<PagingData<Serie>> get() = _seriesPaging
+    private val queryParaBuscar = MutableStateFlow("")
+    private val _queryComDebounce = MutableStateFlow("")
+
+    var textoCampoDeBusca by mutableStateOf("")
+        private set
+
+    private var pagingSource = inicializarPagingSource(_queryComDebounce.value)
+
+    private val pager: Pager<Int, Serie> = Pager(
+        config = PagingConfig(
+            pageSize = SeriePagingSource.TAMANHO_DA_PAGINA,
+            prefetchDistance = SeriePagingSource.PREFETCH_DISTANCE
+        ),
+        pagingSourceFactory = { inicializarPagingSource(_queryComDebounce.value) }
+    )
+    var seriesPaging = pager.flow
 
     init {
-        listarSeriesPopulares()
+        queryParaBuscar
+            .debounce(BUSCA_DEBOUNCE_MS)
+            .distinctUntilChanged()
+            .onEach {
+                _queryComDebounce.value = it
+                atualizarPager()
+            }
+            .launchIn(viewModelScope)
     }
 
-    // TODO chamar só uma vez
-    private fun listarSeriesPopulares() {
-        viewModelScope.launch {
-            listarSeriesPopularesUseCase()
-                .distinctUntilChanged()
-                .cachedIn(viewModelScope)
-                .collect { _seriesPaging.value = it }
-        }
+    private fun inicializarPagingSource(busca: String): PagingSource<Int, Serie> {
+        pagingSource = SeriePagingSource(direcionarConsultaDoCatalogoUseCase, busca)
+        return pagingSource
+    }
+
+    private fun atualizarPager() {
+        pagingSource.invalidate()
+    }
+
+    fun atualizarTextoDeBusca(input: String) {
+        textoCampoDeBusca = input
+        atualizarQueryDeBusca(input)
+    }
+
+    fun atualizarQueryDeBusca(query: String) {
+        if (queryParaBuscar.value.isEmpty() && query.isBlank()) return
+        if (queryParaBuscar.value.isBlank() && query.length < BUSCA_MINIMO_CARACTERES) return
+
+        queryParaBuscar.tryEmit(query)
+    }
+
+    companion object {
+        private const val BUSCA_DEBOUNCE_MS = 300L
+        private const val BUSCA_MINIMO_CARACTERES = 3
     }
 }

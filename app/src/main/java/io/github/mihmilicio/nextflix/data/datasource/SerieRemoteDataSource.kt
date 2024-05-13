@@ -7,8 +7,14 @@ import retrofit2.http.Query
 interface SerieRemoteDataSource {
 
     @GET("most-popular")
-    suspend fun consultarSeries(
+    suspend fun listarSeriesPopulares(
         @Query("page") pagina: Int
+    ): ListagemDeSeriesDto
+
+    @GET("search")
+    suspend fun buscarSeries(
+        @Query("page") pagina: Int,
+        @Query("q") busca: String
     ): ListagemDeSeriesDto
 
 }
