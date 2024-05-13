@@ -9,4 +9,6 @@ class WatchlistRepository @Inject constructor(
 ) {
     fun adicionarSerieNaWatchlist(serie: DetalheDaSerie) =
         watchlistLocalDataSource.adicionarSerieNaWatchlist(serie)
+
+    fun listarSeriesNaWatchlist() = watchlistLocalDataSource.listarSeriesNaWatchlist()
 }

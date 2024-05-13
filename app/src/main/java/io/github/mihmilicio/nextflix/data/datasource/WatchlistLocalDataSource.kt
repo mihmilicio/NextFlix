@@ -13,4 +13,8 @@ class WatchlistLocalDataSource {
         Log.d("WatchlistLocalDataSource", "Watchlist atualizada: ${watchlist.size}")
     }
 
+    fun listarSeriesNaWatchlist(): List<DetalheDaSerie> {
+        return watchlist
+    }
+
 }
