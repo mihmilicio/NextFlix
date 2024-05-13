@@ -11,4 +11,5 @@
 
     <string name="catalogo_titulo">Catálogo</string>
     <string name="catalogo_icon_content_description">Ícone de livro aberto representando um catálogo</string>
+    <string name="catalogo_textfield_busca_placeholder">Buscar por palavra…</string>
 </resources>
