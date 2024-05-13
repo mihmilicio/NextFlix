@@ -25,7 +25,6 @@ import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 fun CatalogoScreen(
     viewModel: CatalogoViewModel = hiltViewModel()
 ) {
-
     val seriePagingItems: LazyPagingItems<Serie> = viewModel.seriesPaging.collectAsLazyPagingItems()
 
     Scaffold(
