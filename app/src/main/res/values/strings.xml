@@ -2,6 +2,9 @@
     <string name="app_name">NextFlix</string>
 
     <string name="btn_voltar_alt_text">Voltar</string>
+    <string name="btn_recarregar_alt_text">Recarregar</string>
+
+    <string name="erro_mensagem_padrao">Não foi possível carregar. Tente novamente.</string>
 
     <string name="watchlist_titulo">Watchlist</string>
     <string name="watchlist_icon_content_description">Ícone de marca-páginas representando os itens salvos na watchlist</string>
