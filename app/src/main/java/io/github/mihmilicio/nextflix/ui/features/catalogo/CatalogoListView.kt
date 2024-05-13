@@ -39,22 +39,22 @@ fun SerieGrid(seriePagingItems: LazyPagingItems<Serie>) {
 fun LazyGridScope.renderizarEstados(seriePagingItems: LazyPagingItems<Serie>) {
     seriePagingItems.apply {
         when {
-            loadState.refresh is LoadState.Loading -> loadingRow()
+            loadState.refresh is LoadState.Loading -> renderizarLoadingRow()
 
             loadState.refresh is LoadState.Error -> {
                 val error = seriePagingItems.loadState.refresh as LoadState.Error
-                erroRow(
+                renderizarErroRow(
                     loadStateError = error,
                     retry = { retry() }
                 )
             }
 
-            loadState.append is LoadState.Loading -> loadingRow(modifier = Modifier.padding(top = 12.dp))
+            loadState.append is LoadState.Loading -> renderizarLoadingRow(modifier = Modifier.padding(top = 12.dp))
 
 
             loadState.append is LoadState.Error -> {
                 val error = seriePagingItems.loadState.append as LoadState.Error
-                erroRow(
+                renderizarErroRow(
                     loadStateError = error,
                     retry = { retry() },
                     modifier = Modifier.padding(top = 12.dp)
@@ -64,7 +64,7 @@ fun LazyGridScope.renderizarEstados(seriePagingItems: LazyPagingItems<Serie>) {
     }
 }
 
-fun LazyGridScope.loadingRow(modifier: Modifier = Modifier) {
+fun LazyGridScope.renderizarLoadingRow(modifier: Modifier = Modifier) {
     item(span = { GridItemSpan(maxLineSpan) }) {
         Loader(
             modifier = modifier
@@ -72,7 +72,7 @@ fun LazyGridScope.loadingRow(modifier: Modifier = Modifier) {
     }
 }
 
-fun LazyGridScope.erroRow(
+fun LazyGridScope.renderizarErroRow(
     loadStateError: LoadState.Error,
     retry: () -> Unit,
     modifier: Modifier = Modifier
