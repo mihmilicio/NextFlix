@@ -1,6 +1,6 @@
 package io.github.mihmilicio.nextflix.data.dto
 
-import io.github.mihmilicio.nextflix.data.Serie
+import io.github.mihmilicio.nextflix.domain.model.Serie
 import kotlinx.serialization.Serializable
 
 @Serializable

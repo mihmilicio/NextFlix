@@ -1,4 +1,4 @@
-package io.github.mihmilicio.nextflix.data
+package io.github.mihmilicio.nextflix.domain.model
 
 data class Serie(
     val id: Long,

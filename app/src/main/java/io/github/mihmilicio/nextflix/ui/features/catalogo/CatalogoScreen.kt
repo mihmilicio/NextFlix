@@ -15,7 +15,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import io.github.mihmilicio.nextflix.R
-import io.github.mihmilicio.nextflix.data.Serie
+import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.ui.components.SearchBarView
 import io.github.mihmilicio.nextflix.ui.components.TopAppBarSurface
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme

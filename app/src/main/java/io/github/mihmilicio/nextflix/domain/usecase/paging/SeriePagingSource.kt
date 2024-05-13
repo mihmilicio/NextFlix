@@ -1,10 +1,10 @@
-package io.github.mihmilicio.nextflix.data.repository.paging
+package io.github.mihmilicio.nextflix.domain.usecase.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import io.github.mihmilicio.nextflix.data.Serie
 import io.github.mihmilicio.nextflix.data.dto.asDomainModel
-import io.github.mihmilicio.nextflix.domain.catalogo.DirecionarConsultaDoCatalogoUseCase
+import io.github.mihmilicio.nextflix.domain.model.Serie
+import io.github.mihmilicio.nextflix.domain.usecase.DirecionarConsultaDoCatalogoUseCase
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject

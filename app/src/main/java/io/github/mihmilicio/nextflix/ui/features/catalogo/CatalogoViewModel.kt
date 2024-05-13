@@ -9,9 +9,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.github.mihmilicio.nextflix.data.Serie
-import io.github.mihmilicio.nextflix.data.repository.paging.SeriePagingSource
-import io.github.mihmilicio.nextflix.domain.catalogo.DirecionarConsultaDoCatalogoUseCase
+import io.github.mihmilicio.nextflix.domain.model.Serie
+import io.github.mihmilicio.nextflix.domain.usecase.DirecionarConsultaDoCatalogoUseCase
+import io.github.mihmilicio.nextflix.domain.usecase.paging.SeriePagingSource
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce

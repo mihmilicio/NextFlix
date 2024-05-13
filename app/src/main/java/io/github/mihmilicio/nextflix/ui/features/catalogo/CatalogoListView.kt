@@ -15,7 +15,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import io.github.mihmilicio.nextflix.data.Serie
+import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.ui.components.ErroRow
 import io.github.mihmilicio.nextflix.ui.components.Loader
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
@@ -49,7 +49,11 @@ fun LazyGridScope.renderizarEstados(seriePagingItems: LazyPagingItems<Serie>) {
                 )
             }
 
-            loadState.append is LoadState.Loading -> renderizarLoadingRow(modifier = Modifier.padding(top = 12.dp))
+            loadState.append is LoadState.Loading -> renderizarLoadingRow(
+                modifier = Modifier.padding(
+                    top = 12.dp
+                )
+            )
 
 
             loadState.append is LoadState.Error -> {

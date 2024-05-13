@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import io.github.mihmilicio.nextflix.data.Serie
+import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 
 

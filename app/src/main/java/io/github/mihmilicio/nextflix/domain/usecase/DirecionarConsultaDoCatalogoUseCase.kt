@@ -1,4 +1,4 @@
-package io.github.mihmilicio.nextflix.domain.catalogo
+package io.github.mihmilicio.nextflix.domain.usecase
 
 import io.github.mihmilicio.nextflix.data.dto.ListagemDeSeriesDto
 import javax.inject.Inject
