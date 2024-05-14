@@ -1,4 +1,4 @@
-package io.github.mihmilicio.nextflix.ui.features.watchlist
+package io.github.mihmilicio.nextflix.test_utils
 
 interface SuiteDeTesteViewModel<T> {
 

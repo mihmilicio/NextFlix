@@ -1,4 +1,4 @@
-package io.github.mihmilicio.nextflix
+package io.github.mihmilicio.nextflix.test_utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

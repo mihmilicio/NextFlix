@@ -1,4 +1,4 @@
-package io.github.mihmilicio.nextflix
+package io.github.mihmilicio.nextflix.test_utils
 
 import org.junit.Before
 import org.mockito.Mockito

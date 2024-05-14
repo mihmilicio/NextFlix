@@ -2,14 +2,14 @@ package io.github.mihmilicio.nextflix.ui.features.catalogo
 
 import androidx.paging.testing.asPagingSourceFactory
 import androidx.paging.testing.asSnapshot
-import io.github.mihmilicio.nextflix.SuiteDeTesteCoroutines
-import io.github.mihmilicio.nextflix.SuiteDeTesteMockito
 import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.domain.usecase.AdicionarSerieNaWatchlistUseCase
 import io.github.mihmilicio.nextflix.domain.usecase.InicializarPaginacaoDoCatalogoUseCase
-import io.github.mihmilicio.nextflix.mock
-import io.github.mihmilicio.nextflix.ui.features.watchlist.SuiteDeTesteViewModel
-import io.github.mihmilicio.nextflix.whenever
+import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteCoroutines
+import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteMockito
+import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteViewModel
+import io.github.mihmilicio.nextflix.test_utils.mock
+import io.github.mihmilicio.nextflix.test_utils.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest

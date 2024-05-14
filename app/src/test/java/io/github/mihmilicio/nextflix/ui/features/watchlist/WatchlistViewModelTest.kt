@@ -1,12 +1,13 @@
 package io.github.mihmilicio.nextflix.ui.features.watchlist
 
-import io.github.mihmilicio.nextflix.SuiteDeTesteMockito
 import io.github.mihmilicio.nextflix.domain.model.Episodio
 import io.github.mihmilicio.nextflix.domain.model.SerieParaAssistir
 import io.github.mihmilicio.nextflix.domain.usecase.ListarSeriesParaAssistirUseCase
 import io.github.mihmilicio.nextflix.domain.usecase.MarcarEpisodioAssistidoUseCase
-import io.github.mihmilicio.nextflix.mock
-import io.github.mihmilicio.nextflix.whenever
+import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteMockito
+import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteViewModel
+import io.github.mihmilicio.nextflix.test_utils.mock
+import io.github.mihmilicio.nextflix.test_utils.whenever
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.mockito.Mockito.times
