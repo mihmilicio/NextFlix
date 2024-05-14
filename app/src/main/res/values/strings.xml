@@ -8,8 +8,12 @@
 
     <string name="watchlist_titulo">Watchlist</string>
     <string name="watchlist_icon_content_description">Ícone de marca-páginas representando os itens salvos na watchlist</string>
+    <string name="watchlist_empty_state_titulo">Você não tem nenhuma série para assistir no momento</string>
+    <string name="watchlist_empty_state_corpo">Tente salvar as que te interessam do Catálogo</string>
 
     <string name="catalogo_titulo">Catálogo</string>
     <string name="catalogo_icon_content_description">Ícone de livro aberto representando um catálogo</string>
     <string name="catalogo_textfield_busca_placeholder">Buscar por palavra…</string>
+    <string name="catalogo_empty_state_titulo">Não temos séries para te mostrar no momento</string>
+    <string name="catalogo_empty_state_corpo">Se estiver fazendo uma busca, escreva palavras completas</string>
 </resources>

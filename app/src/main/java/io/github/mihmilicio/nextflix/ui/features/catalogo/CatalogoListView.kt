@@ -7,8 +7,11 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.SyncProblem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -16,9 +19,11 @@ import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
+import io.github.mihmilicio.nextflix.R
 import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.ui.components.ErroRow
 import io.github.mihmilicio.nextflix.ui.components.Loader
+import io.github.mihmilicio.nextflix.ui.components.MensagemFeedback
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 import kotlinx.coroutines.flow.flowOf
 
@@ -30,10 +35,7 @@ fun SerieGrid(seriePagingItems: LazyPagingItems<Serie>, onAdicionarSerie: (Serie
         verticalArrangement = Arrangement.spacedBy(4.dp),
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        items(
-            count = seriePagingItems.itemCount,
-            key = seriePagingItems.itemKey { it.id }
-        ) { i ->
+        items(count = seriePagingItems.itemCount, key = seriePagingItems.itemKey { it.id }) { i ->
             SerieCard(seriePagingItems[i]!!, onAdicionarSerie)
         }
         renderizarEstados(seriePagingItems)
@@ -47,10 +49,7 @@ fun LazyGridScope.renderizarEstados(seriePagingItems: LazyPagingItems<Serie>) {
 
             loadState.refresh is LoadState.Error -> {
                 val error = seriePagingItems.loadState.refresh as LoadState.Error
-                renderizarErroRow(
-                    loadStateError = error,
-                    retry = { retry() }
-                )
+                renderizarErroRow(loadStateError = error, retry = { retry() })
             }
 
             loadState.append is LoadState.Loading -> renderizarLoadingRow(
@@ -68,6 +67,16 @@ fun LazyGridScope.renderizarEstados(seriePagingItems: LazyPagingItems<Serie>) {
                     modifier = Modifier.padding(top = 12.dp)
                 )
             }
+
+            seriePagingItems.itemCount == 0 -> {
+                item(span = { GridItemSpan(maxLineSpan) }) {
+                    MensagemFeedback(
+                        titulo = stringResource(R.string.catalogo_empty_state_titulo),
+                        corpo = stringResource(R.string.catalogo_empty_state_corpo),
+                        icone = Icons.Default.SyncProblem,
+                    )
+                }
+            }
         }
     }
 }
@@ -81,9 +90,7 @@ fun LazyGridScope.renderizarLoadingRow(modifier: Modifier = Modifier) {
 }
 
 fun LazyGridScope.renderizarErroRow(
-    loadStateError: LoadState.Error,
-    retry: () -> Unit,
-    modifier: Modifier = Modifier
+    loadStateError: LoadState.Error, retry: () -> Unit, modifier: Modifier = Modifier
 ) {
     item(span = { GridItemSpan(maxLineSpan) }) {
         ErroRow(
@@ -99,13 +106,10 @@ fun LazyGridScope.renderizarErroRow(
 @Composable
 fun SerieGridPreview() {
     NextFlixTheme {
-        SerieGrid(
-            flowOf(
-                PagingData.from(
-                    Serie.listaStub
-                )
-            ).collectAsLazyPagingItems(),
-            onAdicionarSerie = {}
-        )
+        SerieGrid(flowOf(
+            PagingData.from(
+                Serie.listaStub
+            )
+        ).collectAsLazyPagingItems(), onAdicionarSerie = {})
     }
 }
