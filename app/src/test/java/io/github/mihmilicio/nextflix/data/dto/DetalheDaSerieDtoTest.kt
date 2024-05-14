@@ -8,7 +8,7 @@ import org.junit.Test
 class DetalheDaSerieDtoTest {
 
     @Test
-    fun `transforma em detalhe da série`() {
+    fun `transforma em detalhe da serie`() {
         val dto = DetalheDaSerieDto(
             id = 123L,
             name = "Nome",

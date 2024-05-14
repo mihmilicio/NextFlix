@@ -21,7 +21,7 @@ class AdicionarSerieNaWatchlistUseCaseTest : SuiteDeTesteMockito,
         AdicionarSerieNaWatchlistUseCase(consultarDetalhesDaSerieUseCase, watchlistRepository)
 
     @Test
-    fun `adicionar nova série na watchlist`() = runTest {
+    fun `adicionar nova serie na watchlist`() = runTest {
         val id = 123L
         val serie = DetalheDaSerie.stub
 
@@ -35,7 +35,7 @@ class AdicionarSerieNaWatchlistUseCaseTest : SuiteDeTesteMockito,
     }
 
     @Test
-    fun `adicionar série existente na watchlist`() = runTest {
+    fun `adicionar serie existente na watchlist`() = runTest {
         val id = 123L
         val serie = DetalheDaSerie.stub
 

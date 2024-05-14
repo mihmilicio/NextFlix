@@ -29,7 +29,7 @@ class CatalogoViewModelTest : SuiteDeTesteDeClasse<CatalogoViewModel>, SuiteDeTe
         CatalogoViewModel(inicializarPaginacaoDoCatalogoUseCase, adicionarSerieNaWatchlistUseCase)
 
     @Test
-    fun `deve listar series disponíveis`() = runTest {
+    fun `deve listar series disponiveis`() = runTest {
         val busca = ""
         val seriesEsperadas = Serie.listaStub
         whenever(inicializarPaginacaoDoCatalogoUseCase(busca)).thenReturn { seriesEsperadas.asPagingSourceFactory()() }
@@ -64,7 +64,7 @@ class CatalogoViewModelTest : SuiteDeTesteDeClasse<CatalogoViewModel>, SuiteDeTe
     }
 
     @Test
-    fun `não deve buscar valores inválidos`() = runTest {
+    fun `nao deve buscar valores invalidos`() = runTest {
         val buscaPadrao = ""
 
         val todasAsSeries = Serie.listaStub
@@ -101,7 +101,7 @@ class CatalogoViewModelTest : SuiteDeTesteDeClasse<CatalogoViewModel>, SuiteDeTe
 
 
     @Test
-    fun `adicionar série na watchlist`() = runTest {
+    fun `adicionar serie na watchlist`() = runTest {
         val seriesEsperadas = Serie.listaStub
         whenever(inicializarPaginacaoDoCatalogoUseCase("")).thenReturn { seriesEsperadas.asPagingSourceFactory()() }
 

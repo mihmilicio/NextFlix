@@ -8,7 +8,7 @@ import org.junit.Test
 class DetalheDaSerieTest {
 
     @Test
-    fun `verifica se tem episódios não assistidos`() {
+    fun `verifica se tem episodios nao assistidos`() {
         val detalheDaSerie = DetalheDaSerie.stub.copy()
 
         detalheDaSerie.episodios = Episodio.listaStub
@@ -22,7 +22,7 @@ class DetalheDaSerieTest {
     }
 
     @Test
-    fun `transforma em série da watchlist`() {
+    fun `transforma em serie da watchlist`() {
         val episodioNaoAssistido = Episodio(
             temporada = 1, episodio = 2, nome = "O Poderoso Chefão", assistido = false
         )
@@ -48,7 +48,7 @@ class DetalheDaSerieTest {
 
 
     @Test
-    fun `atualiza episódio específico`() {
+    fun `atualiza episodio especifico`() {
         val detalheDaSerie = DetalheDaSerie.stub.copy()
 
         val ep1temp1 = Episodio(

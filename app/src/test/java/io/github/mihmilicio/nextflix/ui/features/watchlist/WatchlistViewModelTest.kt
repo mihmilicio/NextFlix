@@ -34,7 +34,7 @@ class WatchlistViewModelTest : SuiteDeTesteDeClasse<WatchlistViewModel>, SuiteDe
     }
 
     @Test
-    fun `deve mostrar o próximo episódio para assistir`() {
+    fun `deve mostrar o proximo episodio para assistir`() {
         val seriesIniciais = SerieParaAssistir.listaStub
         val serieAssistida = seriesIniciais[1]
 
@@ -63,7 +63,7 @@ class WatchlistViewModelTest : SuiteDeTesteDeClasse<WatchlistViewModel>, SuiteDe
     }
 
     @Test
-    fun `deve remover série finalizada`() {
+    fun `deve remover serie finalizada`() {
         val seriesIniciais = SerieParaAssistir.listaStub
         val serieAssistida = seriesIniciais[1]
 

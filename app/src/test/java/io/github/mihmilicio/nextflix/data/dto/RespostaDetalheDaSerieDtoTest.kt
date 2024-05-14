@@ -7,7 +7,7 @@ import org.junit.Test
 
 class RespostaDetalheDaSerieDtoTest {
     @Test
-    fun `transforma em detalhe da série`() {
+    fun `transforma em detalhe da serie`() {
         val dto = RespostaDetalheDaSerieDto(
             tvShow = DetalheDaSerieDto(
                 id = 123L,
