@@ -14,8 +14,8 @@ import org.mockito.Mockito.verify
 
 class WatchlistViewModelTest : SuiteDeTesteViewModel<WatchlistViewModel>, SuiteDeTesteMockito {
 
-    val listarSeriesParaAssistirUseCase: ListarSeriesParaAssistirUseCase = mock()
-    val marcarEpisodioAssistidoUseCase: MarcarEpisodioAssistidoUseCase = mock()
+    private val listarSeriesParaAssistirUseCase: ListarSeriesParaAssistirUseCase = mock()
+    private val marcarEpisodioAssistidoUseCase: MarcarEpisodioAssistidoUseCase = mock()
 
     override fun instanciarViewModel() =
         WatchlistViewModel(listarSeriesParaAssistirUseCase, marcarEpisodioAssistidoUseCase)
