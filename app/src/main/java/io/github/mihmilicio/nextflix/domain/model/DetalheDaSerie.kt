@@ -45,5 +45,21 @@ data class DetalheDaSerie(
                 )
             )
         )
+
+        val stubAssistida = DetalheDaSerie(
+            id = 9874L,
+            nome = "Nome",
+            posterUrl = "url",
+            foto = "url.foto",
+            assistida = true,
+            episodios = listOf(
+                Episodio(
+                    temporada = 1,
+                    episodio = 1,
+                    nome = "Episodio 1",
+                    assistido = true
+                )
+            )
+        )
     }
 }
