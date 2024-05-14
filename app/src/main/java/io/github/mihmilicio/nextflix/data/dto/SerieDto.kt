@@ -8,7 +8,15 @@ data class SerieDto(
     val id: Long,
     val name: String,
     val image_thumbnail_path: String
-)
+) {
+    companion object {
+        val stub = SerieDto(
+            id = 1,
+            name = "Nome",
+            image_thumbnail_path = "url"
+        )
+    }
+}
 
 fun List<SerieDto>.asDomainModel() = map {
     Serie(

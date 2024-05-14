@@ -10,22 +10,22 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class BuscarSeriesUseCaseTest : SuiteDeTesteMockito, SuiteDeTesteDeClasse<BuscarSeriesUseCase> {
+class ListarSeriesPopularesUseCaseTest : SuiteDeTesteMockito,
+    SuiteDeTesteDeClasse<ListarSeriesPopularesUseCase> {
 
     private val serieRepository: SerieRepository = mock()
 
-    override fun instanciar() = BuscarSeriesUseCase(serieRepository)
+    override fun instanciar() = ListarSeriesPopularesUseCase(serieRepository)
 
     @Test
     fun invoke() = runTest {
         val pagina = 1
-        val busca = "flash"
 
         val listagemDeSeries = ListagemDeSeriesDto.stub
-        whenever(serieRepository.buscarSeries(pagina, busca)).thenReturn(listagemDeSeries)
+        whenever(serieRepository.listarSeriesPopulares(pagina)).thenReturn(listagemDeSeries)
 
-        val buscarSeriesUseCase = instanciar()
-        val series = buscarSeriesUseCase(pagina, busca)
+        val listarSeriesPopularesUseCase = instanciar()
+        val series = listarSeriesPopularesUseCase(pagina)
 
         assertEquals(listagemDeSeries, series)
     }

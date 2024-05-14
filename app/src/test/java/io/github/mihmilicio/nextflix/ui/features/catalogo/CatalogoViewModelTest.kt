@@ -6,8 +6,8 @@ import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.domain.usecase.AdicionarSerieNaWatchlistUseCase
 import io.github.mihmilicio.nextflix.domain.usecase.InicializarPaginacaoDoCatalogoUseCase
 import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteCoroutines
+import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteDeClasse
 import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteMockito
-import io.github.mihmilicio.nextflix.test_utils.SuiteDeTesteViewModel
 import io.github.mihmilicio.nextflix.test_utils.mock
 import io.github.mihmilicio.nextflix.test_utils.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,14 +18,14 @@ import org.junit.Test
 import org.mockito.Mockito.verify
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class CatalogoViewModelTest : SuiteDeTesteViewModel<CatalogoViewModel>, SuiteDeTesteMockito,
+class CatalogoViewModelTest : SuiteDeTesteDeClasse<CatalogoViewModel>, SuiteDeTesteMockito,
     SuiteDeTesteCoroutines() {
 
     private val inicializarPaginacaoDoCatalogoUseCase: InicializarPaginacaoDoCatalogoUseCase =
         mock()
     private val adicionarSerieNaWatchlistUseCase: AdicionarSerieNaWatchlistUseCase = mock()
 
-    override fun instanciarViewModel() =
+    override fun instanciar() =
         CatalogoViewModel(inicializarPaginacaoDoCatalogoUseCase, adicionarSerieNaWatchlistUseCase)
 
     @Test
@@ -35,7 +35,7 @@ class CatalogoViewModelTest : SuiteDeTesteViewModel<CatalogoViewModel>, SuiteDeT
         whenever(inicializarPaginacaoDoCatalogoUseCase(busca)).thenReturn { seriesEsperadas.asPagingSourceFactory()() }
 
 
-        val viewModel = instanciarViewModel()
+        val viewModel = instanciar()
 
         verify(inicializarPaginacaoDoCatalogoUseCase).invoke(busca)
         assertEquals(seriesEsperadas, viewModel.seriesPaging.asSnapshot { })
@@ -52,7 +52,7 @@ class CatalogoViewModelTest : SuiteDeTesteViewModel<CatalogoViewModel>, SuiteDeT
         whenever(inicializarPaginacaoDoCatalogoUseCase(busca = buscaPadrao)).thenReturn { todasAsSeries.asPagingSourceFactory()() }
         whenever(inicializarPaginacaoDoCatalogoUseCase(busca = busca)).thenReturn { seriesFiltradas.asPagingSourceFactory()() }
 
-        val viewModel = instanciarViewModel()
+        val viewModel = instanciar()
 
         assertEquals(todasAsSeries, viewModel.seriesPaging.asSnapshot { })
 
@@ -73,7 +73,7 @@ class CatalogoViewModelTest : SuiteDeTesteViewModel<CatalogoViewModel>, SuiteDeT
         whenever(inicializarPaginacaoDoCatalogoUseCase(busca = buscaPadrao)).thenReturn { todasAsSeries.asPagingSourceFactory()() }
         whenever(inicializarPaginacaoDoCatalogoUseCase(busca = "arr")).thenReturn { seriesFiltradas.asPagingSourceFactory()() }
 
-        val viewModel = instanciarViewModel()
+        val viewModel = instanciar()
 
         assertEquals(todasAsSeries, viewModel.seriesPaging.asSnapshot { })
 
@@ -105,7 +105,7 @@ class CatalogoViewModelTest : SuiteDeTesteViewModel<CatalogoViewModel>, SuiteDeT
         val seriesEsperadas = Serie.listaStub
         whenever(inicializarPaginacaoDoCatalogoUseCase("")).thenReturn { seriesEsperadas.asPagingSourceFactory()() }
 
-        val viewModel = instanciarViewModel()
+        val viewModel = instanciar()
 
         val serieParaAdicionar = Serie.stub
         viewModel.adicionarSerie(serieParaAdicionar)
