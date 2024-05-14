@@ -18,6 +18,10 @@ class WatchlistLocalDataSource {
         return watchlist.filter { !it.assistida }
     }
 
+    fun buscarSerieNaWatchlist(id: Long): DetalheDaSerie? {
+        return watchlist.find { it.id == id }
+    }
+
     fun atualizarEpisodioDaSerie(serieId: Long, episodio: Episodio) {
         watchlist.map { serie ->
             if (serie.id == serieId) {

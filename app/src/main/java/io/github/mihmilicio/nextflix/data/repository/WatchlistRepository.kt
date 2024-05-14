@@ -13,6 +13,8 @@ class WatchlistRepository @Inject constructor(
 
     fun listarSeriesNaWatchlist() = watchlistLocalDataSource.listarSeriesNaWatchlist()
 
+    fun buscarSerieNaWatchlist(id: Long) = watchlistLocalDataSource.buscarSerieNaWatchlist(id)
+
     fun atualizarEpisodioDaSerie(serieId: Long, episodio: Episodio) =
         watchlistLocalDataSource.atualizarEpisodioDaSerie(
             serieId,
