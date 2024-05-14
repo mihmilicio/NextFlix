@@ -8,10 +8,12 @@ data class DetalheDaSerie(
     var episodios: List<Episodio>,
     val assistida: Boolean = false
 ) {
-    fun asSerie() = Serie(
+    fun asSerieParaAssistir() = SerieParaAssistir(
         id = id,
         nome = nome,
-        posterUrl = posterUrl
+        posterUrl = posterUrl,
+        foto = foto,
+        episodio = episodios.first { !it.assistido }
     )
 
     fun atualizarEpisodio(episodio: Episodio) {
@@ -23,17 +25,5 @@ data class DetalheDaSerie(
                     it
                 }
             }
-    }
-
-    companion object {
-        val stub = DetalheDaSerie(
-            id = 35624,
-            nome = "The Flash",
-            posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/35624.jpg",
-            foto = "https://static.episodate.com/images/episode/29560-242.jpg",
-            episodios = Episodio.listaStub
-        )
-
-        val listaStub = listOf(stub, stub, stub)
     }
 }

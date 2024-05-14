@@ -27,7 +27,7 @@ fun WatchlistScreen(
                 .padding(innerPadding)
         ) {
             WatchlistList(
-                episodios = viewModel.episodios,
+                series = viewModel.series,
                 marcarEpisodioAssistido = { viewModel.marcarEpisodioAssistido(it) })
         }
     }
