@@ -30,4 +30,20 @@ data class DetalheDaSerie(
 
         assistida = episodios.all { it.assistido }
     }
+
+    companion object {
+        val stub = DetalheDaSerie(
+            id = 1234L,
+            nome = "Nome",
+            posterUrl = "url",
+            foto = "url.foto",
+            episodios = listOf(
+                Episodio(
+                    temporada = 1,
+                    episodio = 1,
+                    nome = "Episodio 1"
+                )
+            )
+        )
+    }
 }
