@@ -8,4 +8,10 @@ data class RespostaDetalheDaSerieDto(
     val tvShow: DetalheDaSerieDto
 ) {
     fun asDomainModel(): DetalheDaSerie = tvShow.asDomainModel()
+
+    companion object {
+        val stub = RespostaDetalheDaSerieDto(
+            tvShow = DetalheDaSerieDto.stub
+        )
+    }
 }

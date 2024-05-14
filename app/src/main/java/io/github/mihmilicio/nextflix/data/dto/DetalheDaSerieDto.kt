@@ -18,4 +18,20 @@ data class DetalheDaSerieDto(
         foto = pictures.elementAtOrNull(0),
         episodios = episodes.asDomainModel()
     )
+
+    companion object {
+        val stub = DetalheDaSerieDto(
+            id = 123L,
+            name = "Nome",
+            image_thumbnail_path = "url",
+            pictures = listOf("url.foto"),
+            episodes = listOf(
+                EpisodioDto(
+                    season = 1,
+                    episode = 1,
+                    name = "Episodio 1"
+                )
+            )
+        )
+    }
 }
