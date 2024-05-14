@@ -5,13 +5,25 @@ data class DetalheDaSerie(
     val nome: String,
     val posterUrl: String,
     val foto: String?,
-    val episodios: List<Episodio>
+    var episodios: List<Episodio>,
+    val assistida: Boolean = false
 ) {
     fun asSerie() = Serie(
         id = id,
         nome = nome,
         posterUrl = posterUrl
     )
+
+    fun atualizarEpisodio(episodio: Episodio) {
+        episodios = episodios
+            .map {
+                if (it.episodio == episodio.episodio && it.temporada == episodio.temporada) {
+                    episodio
+                } else {
+                    it
+                }
+            }
+    }
 
     companion object {
         val stub = DetalheDaSerie(

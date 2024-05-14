@@ -3,7 +3,8 @@ package io.github.mihmilicio.nextflix.domain.model
 data class Episodio(
     val temporada: Int,
     val episodio: Int,
-    val nome: String
+    val nome: String,
+    val assistido: Boolean = false
 ) {
     companion object {
         val stub = Episodio(

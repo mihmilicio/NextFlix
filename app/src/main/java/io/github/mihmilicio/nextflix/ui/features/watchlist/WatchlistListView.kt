@@ -11,13 +11,16 @@ import io.github.mihmilicio.nextflix.domain.model.EpisodioDaWatchlist
 import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 
 @Composable
-fun WatchlistList(episodios: List<EpisodioDaWatchlist>) {
+fun WatchlistList(
+    episodios: List<EpisodioDaWatchlist>,
+    marcarEpisodioAssistido: (EpisodioDaWatchlist) -> Unit
+) {
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(episodios) { episodio ->
-            EpisodioCard(episodio = episodio, marcarEpisodioComoAssistido = {})
+            EpisodioCard(episodio = episodio, marcarEpisodioAssistido = marcarEpisodioAssistido)
         }
     }
 }
@@ -27,6 +30,6 @@ fun WatchlistList(episodios: List<EpisodioDaWatchlist>) {
 @Composable
 fun SerieGridPreview() {
     NextFlixTheme {
-        WatchlistList(EpisodioDaWatchlist.listaStub)
+        WatchlistList(EpisodioDaWatchlist.listaStub, marcarEpisodioAssistido = {})
     }
 }

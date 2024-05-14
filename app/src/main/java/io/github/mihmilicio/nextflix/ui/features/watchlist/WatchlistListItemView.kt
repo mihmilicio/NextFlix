@@ -23,7 +23,7 @@ import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 @Composable
 fun EpisodioCard(
     episodio: EpisodioDaWatchlist,
-    marcarEpisodioComoAssistido: (EpisodioDaWatchlist) -> Unit
+    marcarEpisodioAssistido: (EpisodioDaWatchlist) -> Unit
 ) {
     OutlinedCard {
         ListItem(
@@ -61,7 +61,7 @@ fun EpisodioCard(
             trailingContent = {
                 Checkbox(
                     checked = false,
-                    onCheckedChange = { marcarEpisodioComoAssistido(episodio) })
+                    onCheckedChange = { marcarEpisodioAssistido(episodio) })
             }
         )
     }
@@ -71,6 +71,6 @@ fun EpisodioCard(
 @Composable
 fun SerieCardPreview() {
     NextFlixTheme {
-        EpisodioCard(episodio = EpisodioDaWatchlist.stub, marcarEpisodioComoAssistido = {})
+        EpisodioCard(episodio = EpisodioDaWatchlist.stub, marcarEpisodioAssistido = {})
     }
 }

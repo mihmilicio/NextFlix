@@ -2,6 +2,7 @@ package io.github.mihmilicio.nextflix.data.datasource
 
 import android.util.Log
 import io.github.mihmilicio.nextflix.domain.model.DetalheDaSerie
+import io.github.mihmilicio.nextflix.domain.model.Episodio
 
 class WatchlistLocalDataSource {
 
@@ -14,7 +15,17 @@ class WatchlistLocalDataSource {
     }
 
     fun listarSeriesNaWatchlist(): List<DetalheDaSerie> {
-        return watchlist
+        return watchlist.filter { !it.assistida }
+    }
+
+    fun atualizarEpisodioDaSerie(serieId: Long, episodio: Episodio) {
+        watchlist.map { serie ->
+            if (serie.id == serieId) {
+                serie.atualizarEpisodio(episodio)
+            }
+
+            serie
+        }
     }
 
 }

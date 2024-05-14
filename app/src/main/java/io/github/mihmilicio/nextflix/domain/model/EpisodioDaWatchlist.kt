@@ -7,6 +7,13 @@ data class EpisodioDaWatchlist(
     val serie: Serie,
     val foto: String?
 ) {
+
+    fun asEpisodio() = Episodio(
+        temporada = temporada,
+        episodio = episodio,
+        nome = nome
+    )
+
     companion object {
         val stub = EpisodioDaWatchlist(
             temporada = 1,
