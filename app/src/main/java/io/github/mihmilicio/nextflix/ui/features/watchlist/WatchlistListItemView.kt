@@ -28,7 +28,8 @@ import io.github.mihmilicio.nextflix.ui.theme.NextFlixTheme
 @Composable
 fun EpisodioCard(
     serie: SerieParaAssistir,
-    marcarEpisodioAssistido: (SerieParaAssistir) -> Unit
+    marcarEpisodioAssistido: (SerieParaAssistir) -> Unit,
+    irParaOTopo: () -> Unit
 ) {
     OutlinedCard {
         ListItem(
@@ -56,7 +57,7 @@ fun EpisodioCard(
             supportingContent = {
                 serie.episodio.apply {
                     Text(
-                        text = "S${temporada}E${episodio}: ${serie.nome}",
+                        text = "S${temporada}E${episodio}: $nome",
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
                         style = MaterialTheme.typography.titleMedium,
@@ -66,7 +67,10 @@ fun EpisodioCard(
                 }
             },
             trailingContent = {
-                FilledTonalIconButton(onClick = { marcarEpisodioAssistido(serie) }) {
+                FilledTonalIconButton(onClick = {
+                    marcarEpisodioAssistido(serie)
+                    irParaOTopo()
+                }) {
                     Icon(
                         Icons.Default.Check,
                         contentDescription = stringResource(R.string.watchlist_btn_assistido_content_description)
@@ -81,6 +85,6 @@ fun EpisodioCard(
 @Composable
 fun SerieCardPreview() {
     NextFlixTheme {
-        EpisodioCard(serie = SerieParaAssistir.stub, marcarEpisodioAssistido = {})
+        EpisodioCard(serie = SerieParaAssistir.stub, marcarEpisodioAssistido = {}, irParaOTopo = {})
     }
 }
