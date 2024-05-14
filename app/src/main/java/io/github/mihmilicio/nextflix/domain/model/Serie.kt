@@ -20,25 +20,25 @@ data class Serie(
                 posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/35624.jpg"
             ),
             Serie(
-                id = 35624,
-                nome = "The Flash texto muito longo nesse aqui pra ver como fica",
-                posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/35624.jpg"
+                id = 23455,
+                nome = "Game of Thrones",
+                posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/23455.jpg",
             ),
             Serie(
-                id = 35624,
-                nome = "The Flash",
-                posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/35624.jpg"
+                id = 29560,
+                nome = "Arrow",
+                posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/29560.jpg",
             ),
             Serie(
-                id = 35624,
-                nome = "The Flash",
-                posterUrl = ""
+                id = 23455,
+                nome = "Game of Thrones",
+                posterUrl = "",
             ),
             Serie(
-                id = 35624,
-                nome = "The Flash",
-                posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/35624.jpg"
-            )
+                id = 29560,
+                nome = "Arrow",
+                posterUrl = "https://static.episodate.com/images/tv-show/thumbnail/29560.jpg",
+            ),
         )
     }
 }

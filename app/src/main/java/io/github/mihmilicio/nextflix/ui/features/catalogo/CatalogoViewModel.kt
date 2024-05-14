@@ -11,7 +11,7 @@ import androidx.paging.PagingSource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.mihmilicio.nextflix.domain.model.Serie
 import io.github.mihmilicio.nextflix.domain.usecase.AdicionarSerieNaWatchlistUseCase
-import io.github.mihmilicio.nextflix.domain.usecase.DirecionarConsultaDoCatalogoUseCase
+import io.github.mihmilicio.nextflix.domain.usecase.InicializarPaginacaoDoCatalogoUseCase
 import io.github.mihmilicio.nextflix.domain.usecase.paging.SeriePagingSource
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,9 +25,8 @@ import javax.inject.Inject
 @OptIn(FlowPreview::class)
 @HiltViewModel
 class CatalogoViewModel @Inject constructor(
-    private val direcionarConsultaDoCatalogoUseCase: DirecionarConsultaDoCatalogoUseCase,
+    private val inicializarPaginacaoDoCatalogoUseCase: InicializarPaginacaoDoCatalogoUseCase,
     private val adicionarSerieNaWatchlistUseCase: AdicionarSerieNaWatchlistUseCase
-
 ) : ViewModel() {
 
     private val queryParaBuscar = MutableStateFlow("")
@@ -59,7 +58,7 @@ class CatalogoViewModel @Inject constructor(
     }
 
     private fun inicializarPagingSource(busca: String): PagingSource<Int, Serie> {
-        pagingSource = SeriePagingSource(direcionarConsultaDoCatalogoUseCase, busca)
+        pagingSource = inicializarPaginacaoDoCatalogoUseCase(busca)()
         return pagingSource
     }
 
@@ -72,7 +71,7 @@ class CatalogoViewModel @Inject constructor(
         atualizarQueryDeBusca(input)
     }
 
-    fun atualizarQueryDeBusca(query: String) {
+    private fun atualizarQueryDeBusca(query: String) {
         if (queryParaBuscar.value.isEmpty() && query.isBlank()) return
         if (queryParaBuscar.value.isBlank() && query.length < BUSCA_MINIMO_CARACTERES) return
 

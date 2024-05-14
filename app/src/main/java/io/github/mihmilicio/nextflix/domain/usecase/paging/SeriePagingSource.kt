@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class SeriePagingSource @Inject constructor(
     private val direcionarConsultaDoCatalogoUseCase: DirecionarConsultaDoCatalogoUseCase,
-    var busca: String
+    private var busca: String
 ) : PagingSource<Int, Serie>() {
 
     companion object {

@@ -33,7 +33,7 @@ fun CatalogoScreen(
                 SearchBarView(
                     query = viewModel.textoCampoDeBusca,
                     onQueryChange = { viewModel.atualizarTextoDeBusca(it) },
-                    onSearch = { viewModel.atualizarQueryDeBusca(it) },
+                    onSearch = { viewModel.atualizarTextoDeBusca(it) },
                     placeholderText = stringResource(R.string.catalogo_textfield_busca_placeholder),
                     modifier = Modifier.fillMaxWidth()
                 )
