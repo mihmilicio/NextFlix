@@ -4,6 +4,9 @@ Apesar de a maioria das plataformas guardar essa informação, ela nem sempre é
 
 A NextFlix chegou para que você possa centralizar o controle das séries que você gosta em um só lugar. Navegue no Catálogo das séries, salve as que te interessam na sua Watchlist, e marque os episódios assistidos. 
 
+## Screenshots
+<img src="/screenshot_watchlist.jpeg" width="300">     <img src="/screenshot_catalogo.jpeg" width="300">
+
 ## Informações técnicas
 - 100% Kotlin
 - Jetpack Compose com navegação
