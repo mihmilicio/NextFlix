@@ -10,6 +10,7 @@
     <string name="watchlist_icon_content_description">Ícone de marca-páginas representando os itens salvos na watchlist</string>
     <string name="watchlist_empty_state_titulo">Você não tem nenhuma série para assistir no momento</string>
     <string name="watchlist_empty_state_corpo">Tente salvar as que te interessam do Catálogo</string>
+    <string name="watchlist_btn_assistido_content_description">Marcar episódio como assistido</string>
 
     <string name="catalogo_titulo">Catálogo</string>
     <string name="catalogo_icon_content_description">Ícone de livro aberto representando um catálogo</string>
