@@ -6,7 +6,7 @@ data class DetalheDaSerie(
     val posterUrl: String,
     val foto: String?,
     var episodios: List<Episodio>,
-    val assistida: Boolean = false
+    var assistida: Boolean = false
 ) {
     fun asSerieParaAssistir() = SerieParaAssistir(
         id = id,
@@ -25,5 +25,7 @@ data class DetalheDaSerie(
                     it
                 }
             }
+        
+        assistida = episodios.all { it.assistido }
     }
 }

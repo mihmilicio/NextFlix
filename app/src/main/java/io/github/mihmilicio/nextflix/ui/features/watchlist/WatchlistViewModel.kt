@@ -6,10 +6,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.mihmilicio.nextflix.domain.model.SerieParaAssistir
 import io.github.mihmilicio.nextflix.domain.usecase.ListarSeriesParaAssistirUseCase
 import io.github.mihmilicio.nextflix.domain.usecase.MarcarEpisodioAssistidoUseCase
-import kotlinx.coroutines.FlowPreview
 import javax.inject.Inject
 
-@OptIn(FlowPreview::class)
 @HiltViewModel
 class WatchlistViewModel @Inject constructor(
     private val listarSeriesParaAssistirUseCase: ListarSeriesParaAssistirUseCase,
@@ -26,11 +24,14 @@ class WatchlistViewModel @Inject constructor(
     fun marcarEpisodioAssistido(serie: SerieParaAssistir) {
         marcarEpisodioAssistidoUseCase(serie)
 
-        val episodiosAtualizados = listarSeriesParaAssistirUseCase()
+        val seriesAtualizadas = listarSeriesParaAssistirUseCase()
+        val serieAssistida: (SerieParaAssistir) -> Boolean = { it.id == serie.id }
 
-//        val index = series.indexOf(episodio)
-        val index = series.indexOfFirst { it.id == serie.id }
-        series[index] = episodiosAtualizados[index]
+        series.removeIf(serieAssistida)
+
+        val serieAssistidaAtualizada = seriesAtualizadas.find(serieAssistida)
+        if (serieAssistidaAtualizada != null)
+            series.add(0, serieAssistidaAtualizada)
     }
 
 }
