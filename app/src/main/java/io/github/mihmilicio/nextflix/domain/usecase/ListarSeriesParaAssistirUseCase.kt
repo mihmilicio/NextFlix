@@ -9,7 +9,7 @@ class ListarSeriesParaAssistirUseCase @Inject constructor(
 ) {
 
     operator fun invoke(): List<SerieParaAssistir> = watchlistRepository.listarSeriesNaWatchlist()
-        .filter { serie -> (serie.episodios.isNotEmpty() && !serie.assistida) }
+        .filter { serie -> (serie.temEpisodiosNaoAssistidos() && !serie.assistida) }
         .map { serie ->
             serie.asSerieParaAssistir()
         }

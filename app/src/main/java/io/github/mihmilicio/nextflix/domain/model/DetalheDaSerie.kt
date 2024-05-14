@@ -8,6 +8,8 @@ data class DetalheDaSerie(
     var episodios: List<Episodio>,
     var assistida: Boolean = false
 ) {
+    fun temEpisodiosNaoAssistidos() = episodios.any { !it.assistido }
+
     fun asSerieParaAssistir() = SerieParaAssistir(
         id = id,
         nome = nome,
@@ -25,7 +27,7 @@ data class DetalheDaSerie(
                     it
                 }
             }
-        
+
         assistida = episodios.all { it.assistido }
     }
 }
